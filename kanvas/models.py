@@ -11,6 +11,8 @@ class User(models.Model):
     first_name: models.CharField(max_length=255)
     last_name: models.CharField(max_length=255)
 
+    address: models.ForeignKey("Address", on_delete=models.CASCADE, related_name="users")
+
 
 class Course(models.Model):
     uuid: models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, unique=True)
