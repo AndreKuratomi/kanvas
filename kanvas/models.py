@@ -1,6 +1,15 @@
-from types import CoroutineType
+from tkinter import CASCADE
 from django.db import models
 import uuid
+
+
+class User(models.Model):
+    uuid: models.UUIDField()
+    is_admin: models.BooleanField()
+    email: models.CharField(max_length=255, unique=True)
+    password: models.CharField(max_length=255)
+    first_name: models.CharField(max_length=255)
+    last_name: models.CharField(max_length=255)
 
 
 class Course(models.Model):
@@ -9,6 +18,8 @@ class Course(models.Model):
     demo_time: models.TimeField()
     created_at: models.DateTimeField()
     link_repo: models.CharField(max_length=255)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class Address(models.Model):
