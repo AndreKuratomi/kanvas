@@ -4,7 +4,7 @@ import uuid
 
 
 class User(models.Model):
-    uuid: models.UUIDField()
+    uuid: models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, unique=True)
     is_admin: models.BooleanField()
     email: models.CharField(max_length=255, unique=True)
     password: models.CharField(max_length=255)
@@ -19,7 +19,10 @@ class Course(models.Model):
     created_at: models.DateTimeField()
     link_repo: models.CharField(max_length=255)
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # if user.is_admin == True:
+    user_instructor = models.OneToOneField(User, default=str, on_delete=models.CASCADE)
+    # if user.is_admin == False:
+    user_students = models.ManyToManyField(User, related_name="students")
 
 
 class Address(models.Model):
