@@ -9,7 +9,7 @@ class PersonalizedUserSerializer(serializers.Serializer):
 
     is_admin = serializers.BooleanField()
     email = serializers.CharField(unique=True)
-    password = serializers.CharField()
+    password = serializers.CharField(write_only=True)
     first_name = serializers.CharField()
     last_name = serializers.CharField()
 
