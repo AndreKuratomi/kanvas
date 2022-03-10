@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import uuid
 
-from kanvas.serializers import AddressSerializer
+from addresses.serializers import AddressSerializer
 
 
 class PersonalizedUserSerializer(serializers.Serializer):

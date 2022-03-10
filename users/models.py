@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from pytz import timezone
 
 import uuid
-
-from pytz import timezone
 
 
 class CustomUserManager(BaseUserManager):
