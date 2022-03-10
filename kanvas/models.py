@@ -23,7 +23,7 @@ class Course(models.Model):
 
 
 class Address(models.Model):
-    city = models.CharField(max_length=255)
+    city = models.CharField(max_length=255, default=str)
     country = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     street = models.CharField(max_length=255)

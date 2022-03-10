@@ -1,3 +1,15 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+class UserView():
+
+
+class UserLoginView():
+
+
+class CourseView():
+
+
+class AddressView():
+
+    
