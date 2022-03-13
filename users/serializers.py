@@ -1,11 +1,10 @@
 from rest_framework import serializers
-import uuid
 
-from addresses.serializers import AddressSerializer
+from ..addresses.serializers import AddressSerializer
 
 
 class PersonalizedUserSerializer(serializers.Serializer):
-    uuid = serializers.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, unique=True)
+    uuid = serializers.UUIDField()
 
     is_admin = serializers.BooleanField()
     email = serializers.CharField(unique=True)

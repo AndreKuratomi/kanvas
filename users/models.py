@@ -52,7 +52,7 @@ class PersonalizedUser(AbstractUser):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
 
-    address = models.ForeignKey("Address", on_delete=models.CASCADE, related_name="users")
+    address = models.ForeignKey("addresses.Address", on_delete=models.CASCADE, related_name="users")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
