@@ -13,3 +13,8 @@ class PersonalizedUserSerializer(serializers.Serializer):
     last_name = serializers.CharField()
 
     address = AddressSerializer(many=True, read_only=True)
+
+
+class LoginUserSerializer(serializers.Serializer):
+    email = serializers.CharField()
+    password = serializers.CharField(write_only=True)
