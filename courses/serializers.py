@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import uuid
 
-from users.serializers import PersonalizedUserSerializer
+from accounts.serializers import PersonalizedUserSerializer
 
 
 class CourseSerializer(serializers.Serializer):

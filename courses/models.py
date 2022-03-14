@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import PersonalizedUser
+from accounts.models import PersonalizedUser
 
 
 class Course(models.Model):
