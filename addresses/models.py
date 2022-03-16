@@ -8,4 +8,3 @@ class Address(models.Model):
     street = models.CharField(max_length=255)
     house_number = models.IntegerField()
     zip_code = models.CharField(max_length=255, unique=False)
-

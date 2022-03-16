@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from pytz import timezone
+from django.utils import timezone
 
 import uuid
 
@@ -51,10 +51,11 @@ class PersonalizedUser(AbstractUser):
     password = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    username = models.CharField(unique=False, null=True, max_length=255)
 
-    address = models.ForeignKey("Address", on_delete=models.CASCADE, related_name="users")
+    address = models.ForeignKey("addresses.Address", null=True, on_delete=models.CASCADE, related_name="users")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    OBJECTS = CustomUserManager()
+    objects = CustomUserManager()

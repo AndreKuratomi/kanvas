@@ -1,14 +1,18 @@
 from rest_framework import serializers
 
+from accounts.serializers import PersonalizedUserSerializer
+
 import uuid
 
 
 class AddressSerializer(serializers.Serializer):
-    uuid = serializers.UUIDField(default=uuid.uuid4, editable=False)
+    id = serializers.IntegerField(read_only=True)
 
     city = serializers.CharField()
     country = serializers.CharField()
     state = serializers.CharField()
     street = serializers.CharField()
     house_number = serializers.IntegerField()
-    zip_code = serializers.CharField(unique=False)
+    zip_code = serializers.CharField()
+
+    users = PersonalizedUserSerializer(many=True, read_only=True)

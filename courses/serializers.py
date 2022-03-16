@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import uuid
 
-from users.serializers import PersonalizedUserSerializer
+from accounts.serializers import PersonalizedUserSerializer
 
 
 class CourseSerializer(serializers.Serializer):
@@ -12,7 +12,7 @@ class CourseSerializer(serializers.Serializer):
     demo_time = serializers.TimeField()
     link_repo = serializers.CharField()
 
-    # if user.is_admin == True:
-    user_instructor = PersonalizedUserSerializer(read_only=True)
-    # if user.is_admin == False:
-    user_students = PersonalizedUserSerializer(many=True, read_only=True)
+    # # if user.is_admin == True:
+    # user_instructor = PersonalizedUserSerializer(read_only=True)
+    # # if user.is_admin == False:
+    # user_students = PersonalizedUserSerializer(many=True, read_only=True)
