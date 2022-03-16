@@ -1,17 +1,23 @@
 from rest_framework import status
-from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import authenticate
 
 from accounts.serializers import PersonalizedUserSerializer, LoginUserSerializer
-from .models import PersonalizedUser
 
-import ipdb
+from .models import PersonalizedUser
+from .permissions import IsAdmin
 
 
 class PersonalizedUserView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdmin]
+
     def post(self, request):
         serializer = PersonalizedUserSerializer(data=request.data)
 
@@ -22,11 +28,16 @@ class PersonalizedUserView(APIView):
         if find_user is True:
             return Response({"message": "User already exists"}, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        # ipdb.set_trace()
         user = PersonalizedUser.objects.create_user(**serializer.validated_data)
         serializer = PersonalizedUserSerializer(user)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def get(self, request):
+
+        users = PersonalizedUser.objects.all()
+        serializer = PersonalizedUserSerializer(users, many=True)
+        return Response(serializer.data)
 
 
 class LoginUserView(APIView):

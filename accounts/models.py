@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from pytz import timezone
+from django.utils import timezone
 
 import uuid
 
@@ -12,11 +12,6 @@ class CustomUserManager(BaseUserManager):
         password,
         is_staff,
         is_superuser,
-        # is_admin,
-        # email,
-        # password,
-        # first_name,
-        # last_name,
         **extra_fields
     ):
         now = timezone.now()
@@ -33,11 +28,6 @@ class CustomUserManager(BaseUserManager):
             is_superuser=is_superuser,
             last_login=now,
             date_joined=now,
-            # is_admin=is_admin,
-            # email=email,
-            # password=password,
-            # first_name=first_name,
-            # last_name=last_name,
             **extra_fields
         )
 
@@ -63,7 +53,7 @@ class PersonalizedUser(AbstractUser):
     last_name = models.CharField(max_length=255)
     username = models.CharField(unique=False, null=True, max_length=255)
 
-    address = models.ForeignKey("addresses.Address", on_delete=models.CASCADE, related_name="users")
+    address = models.ForeignKey("addresses.Address", null=True, on_delete=models.CASCADE, related_name="users")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

@@ -37,15 +37,11 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'rest_framework',
-    # 'accounts',
-    # 'courses',
-    # 'addresses'
 ]
 
 THIRD_PARTY_APPS = [
-    'rest_framework'
-
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MY_APPS = [

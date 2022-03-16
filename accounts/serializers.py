@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from addresses.serializers import AddressSerializer
+# from addresses.serializers import AddressSerializer
 
 
 class PersonalizedUserSerializer(serializers.Serializer):
@@ -12,7 +12,7 @@ class PersonalizedUserSerializer(serializers.Serializer):
     first_name = serializers.CharField()
     last_name = serializers.CharField()
 
-    address = AddressSerializer(many=True, read_only=True)
+    # address = AddressSerializer(read_only=True)
 
 
 class LoginUserSerializer(serializers.Serializer):
