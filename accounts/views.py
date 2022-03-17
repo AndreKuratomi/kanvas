@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import authenticate
 
@@ -37,6 +36,7 @@ class PersonalizedUserView(APIView):
 
         users = PersonalizedUser.objects.all()
         serializer = PersonalizedUserSerializer(users, many=True)
+
         return Response(serializer.data)
 
 
