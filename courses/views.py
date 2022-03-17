@@ -1,3 +1,4 @@
+from uuid import UUID
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
@@ -28,7 +29,7 @@ class CoursesView(APIView):
             return Response({'message': 'Course already created!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
         course = Courses.objects.create(**serializer.validated_data)
-        print(course)
+
         serialized = CourseSerializer(course)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
@@ -41,11 +42,24 @@ class CoursesView(APIView):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 
-    # def get(self, request): # kwárquium
+class CourseByIdView(APIView):
+
+    def get(self, request, course_id=''):
+        print(course_id)
+        # if course_id is UUID.:
+        course = Courses.objects.get(uuid=course_id)
+        if not course: # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+
+        serialized = CourseSerializer(course)
+
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def patch(self, request): # Somente Instrutor
+        print("algo")
 
 
-    # def patch(self, request): # Somente Instrutor
-
+# class ManipulateCourseView(APIView):
 
     # def put(self, request): # Somente Instrutor
 
@@ -54,4 +68,3 @@ class CoursesView(APIView):
 
 
     # def delete(self, request): # Somente Instrutor
-
