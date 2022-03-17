@@ -37,6 +37,7 @@ class PersonalizedUserView(APIView):
 
         users = PersonalizedUser.objects.all()
         serializer = PersonalizedUserSerializer(users, many=True)
+
         return Response(serializer.data)
 
 
