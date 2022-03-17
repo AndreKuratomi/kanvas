@@ -44,9 +44,11 @@ class CoursesView(APIView):
 
 class CourseByIdView(APIView):
 
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdmin]
+
     def get(self, request, course_id=''):
-        print(course_id)
-        # if course_id is UUID.:
+
         course = Courses.objects.get(uuid=course_id)
         if not course: # MUDAR ESTA LINHA
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
@@ -55,8 +57,35 @@ class CourseByIdView(APIView):
 
         return Response(serialized.data, status=status.HTTP_200_OK)
 
-    def patch(self, request): # Somente Instrutor
-        print("algo")
+    def patch(self, request, course_id=''):  # Somente Instrutor
+        course = Courses.objects.get(uuid=course_id)
+        if not course:  # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+        # print(course)
+
+        # COMO DEIXAR OS CAMPOS DE REQUEST.FIELDS OPCIONAIS????
+        # valid_keys = ['name', 'demo_time', 'link_repo']
+        # keys = request.data.keys()
+        # for elems in keys:
+        #     for sub_elems in valid_keys:
+        #         if elems != sub_elems:
+
+        to_update_data = request.data
+        serializer = CourseSerializer(data=request.data)
+        # print(serializer.get_fields())
+        if not serializer.is_valid():
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # if 'name' in keys:
+        doesUpdatedNameAlreadyExists = Courses.objects.filter(name=serializer.validated_data['name']).exists()
+        if doesUpdatedNameAlreadyExists:
+            return Response({"message": "There is already a course with this name!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        to_update = Courses.objects.update(**serializer.validated_data)
+        serialized = CourseSerializer(to_update)
+
+        return Response(serialized.data, status=status.HTTP_200_OK)
 
 
 # class ManipulateCourseView(APIView):
