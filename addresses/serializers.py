@@ -2,8 +2,6 @@ from rest_framework import serializers
 
 from accounts.serializers import PersonalizedUserSerializer
 
-import uuid
-
 
 class AddressSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
