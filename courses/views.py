@@ -4,6 +4,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from accounts.models import PersonalizedUser
 from courses.serializers import CourseSerializer
 
 from .models import Courses
@@ -50,7 +51,7 @@ class CourseByIdView(APIView):
     def get(self, request, course_id=''):
 
         course = Courses.objects.get(uuid=course_id)
-        if not course: # MUDAR ESTA LINHA
+        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
         serialized = CourseSerializer(course)
@@ -59,7 +60,7 @@ class CourseByIdView(APIView):
 
     def patch(self, request, course_id=''):  # Somente Instrutor
         course = Courses.objects.get(uuid=course_id)
-        if not course:  # MUDAR ESTA LINHA
+        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
         # print(course)
 
@@ -70,7 +71,7 @@ class CourseByIdView(APIView):
         #     for sub_elems in valid_keys:
         #         if elems != sub_elems:
 
-        to_update_data = request.data
+        # to_update_data = request.data
         serializer = CourseSerializer(data=request.data)
         # print(serializer.get_fields())
         if not serializer.is_valid():
@@ -87,13 +88,62 @@ class CourseByIdView(APIView):
 
         return Response(serialized.data, status=status.HTTP_200_OK)
 
+    def delete(self, request, course_id=''):
+        course = Courses.objects.get(uuid=course_id)
 
-# class ManipulateCourseView(APIView):
+        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
-    # def put(self, request): # Somente Instrutor
+        Courses.delete(course)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-    # def put(self, request): # Somente Instrutor
+class RegisterInstructorToCourseView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdmin]
+
+    def put(self, request, course_id=''):
+        course = Courses.objects.get(uuid=course_id)
+
+        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+
+        candidate_uuid = request.data.instructor_id
+        doesInstructorExist = PersonalizedUser.objects.get(uuid=candidate_uuid)
+        if doesInstructorExist.is_admin is not True:
+            return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        course.instructor = doesInstructorExist
+        course.save()
+
+        serialized = CourseSerializer(course)
+        return Response(serialized.data, status=status.HTTP_200_OK)
 
 
-    # def delete(self, request): # Somente Instrutor
+class EnrollStudentToCourseView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdmin]
+
+    def put(self, request, course_id=''):
+        course = Courses.objects.get(uuid=course_id)
+
+        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+
+        students_to_enroll = request.data
+
+        for student in students_to_enroll:
+            doesUserExist = PersonalizedUser.objects.get(uuid=student)
+            if PersonalizedUser.DoesNotExist:
+                return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
+            elif student.is_admin is True:
+                return Response({"message": "Some student id belongs to an Instructor"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        course.students = students_to_enroll
+        course.save()
+
+        serialized = CourseSerializer(course)
+        return Response(serialized.data, status=status.HTTP_200_OK)
