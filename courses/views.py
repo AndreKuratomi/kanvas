@@ -1,4 +1,3 @@
-from uuid import UUID
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
@@ -9,6 +8,7 @@ from courses.serializers import CourseSerializer
 
 from .models import Courses
 from .permissions import IsAdmin
+from .services import is_valid_UUID
 
 import ipdb
 
@@ -50,53 +50,54 @@ class CourseByIdView(APIView):
 
     def get(self, request, course_id=''):
 
-        course = Courses.objects.get(uuid=course_id)
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if is_valid_UUID(course_id):
+            course = Courses.objects.get(uuid=course_id)
+            serialized = CourseSerializer(course)
+
+            return Response(serialized.data, status=status.HTTP_200_OK)
+        else:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
-
-        serialized = CourseSerializer(course)
-
-        return Response(serialized.data, status=status.HTTP_200_OK)
 
     def patch(self, request, course_id=''):  # Somente Instrutor
-        course = Courses.objects.get(uuid=course_id)
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if is_valid_UUID(course_id):
+            course = Courses.objects.get(uuid=course_id)
+
+            # COMO DEIXAR OS CAMPOS DE REQUEST.FIELDS OPCIONAIS????
+            # valid_keys = ['name', 'demo_time', 'link_repo']
+            # keys = request.data.keys()
+            # for elems in keys:
+            #     for sub_elems in valid_keys:
+            #         if elems != sub_elems:
+
+            # to_update_data = request.data
+            serializer = CourseSerializer(data=request.data)
+            # print(serializer.get_fields())
+            if not serializer.is_valid():
+                print(serializer.errors)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            # if 'name' in keys:
+            doesUpdatedNameAlreadyExists = Courses.objects.filter(name=serializer.validated_data['name']).exists()
+            if doesUpdatedNameAlreadyExists:
+                return Response({"message": "There is already a course with this name!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+            to_update = Courses.objects.update(**serializer.validated_data)
+            serialized = CourseSerializer(to_update)
+
+            return Response(serialized.data, status=status.HTTP_200_OK)
+
+        else:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
-        # print(course)
-
-        # COMO DEIXAR OS CAMPOS DE REQUEST.FIELDS OPCIONAIS????
-        # valid_keys = ['name', 'demo_time', 'link_repo']
-        # keys = request.data.keys()
-        # for elems in keys:
-        #     for sub_elems in valid_keys:
-        #         if elems != sub_elems:
-
-        # to_update_data = request.data
-        serializer = CourseSerializer(data=request.data)
-        # print(serializer.get_fields())
-        if not serializer.is_valid():
-            print(serializer.errors)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        # if 'name' in keys:
-        doesUpdatedNameAlreadyExists = Courses.objects.filter(name=serializer.validated_data['name']).exists()
-        if doesUpdatedNameAlreadyExists:
-            return Response({"message": "There is already a course with this name!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-
-        to_update = Courses.objects.update(**serializer.validated_data)
-        serialized = CourseSerializer(to_update)
-
-        return Response(serialized.data, status=status.HTTP_200_OK)
 
     def delete(self, request, course_id=''):
-        course = Courses.objects.get(uuid=course_id)
+        if is_valid_UUID(course_id):
+            course = Courses.objects.get(uuid=course_id)
+            Courses.delete(course)
 
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        else:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
-
-        Courses.delete(course)
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class RegisterInstructorToCourseView(APIView):
@@ -105,21 +106,22 @@ class RegisterInstructorToCourseView(APIView):
     permission_classes = [IsAdmin]
 
     def put(self, request, course_id=''):
-        course = Courses.objects.get(uuid=course_id)
+        if is_valid_UUID(course_id):
+            course = Courses.objects.get(uuid=course_id)
 
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            candidate_uuid = request.data['instructor_id']
+            doesInstructorExist = PersonalizedUser.objects.get(uuid=candidate_uuid)
+            if doesInstructorExist.is_admin is not True:
+                return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+            course.instructor = doesInstructorExist
+            course.save()
+
+            serialized = CourseSerializer(course)
+            return Response(serialized.data, status=status.HTTP_200_OK)
+
+        else:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
-
-        candidate_uuid = request.data.instructor_id
-        doesInstructorExist = PersonalizedUser.objects.get(uuid=candidate_uuid)
-        if doesInstructorExist.is_admin is not True:
-            return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-
-        course.instructor = doesInstructorExist
-        course.save()
-
-        serialized = CourseSerializer(course)
-        return Response(serialized.data, status=status.HTTP_200_OK)
 
 
 class EnrollStudentToCourseView(APIView):
@@ -128,22 +130,25 @@ class EnrollStudentToCourseView(APIView):
     permission_classes = [IsAdmin]
 
     def put(self, request, course_id=''):
-        course = Courses.objects.get(uuid=course_id)
+        if is_valid_UUID(course_id):
+            course = Courses.objects.get(uuid=course_id)
 
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            students_to_enroll = request.data['students_id']
+
+            for student in students_to_enroll:
+                doesUserExist = PersonalizedUser.objects.get(uuid=student)
+
+                if not doesUserExist:
+                    print('eu, ein..!')
+                    return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
+                elif doesUserExist.is_admin is True:
+                    return Response({"message": "Some student id belongs to an Instructor"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+            course.students.set(students_to_enroll)
+            course.save()
+
+            serialized = CourseSerializer(course)
+            return Response(serialized.data, status=status.HTTP_200_OK)
+
+        else:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
-
-        students_to_enroll = request.data
-
-        for student in students_to_enroll:
-            doesUserExist = PersonalizedUser.objects.get(uuid=student)
-            if PersonalizedUser.DoesNotExist:
-                return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
-            elif student.is_admin is True:
-                return Response({"message": "Some student id belongs to an Instructor"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-
-        course.students = students_to_enroll
-        course.save()
-
-        serialized = CourseSerializer(course)
-        return Response(serialized.data, status=status.HTTP_200_OK)
