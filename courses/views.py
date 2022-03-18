@@ -51,7 +51,9 @@ class CourseByIdView(APIView):
     def get(self, request, course_id=''):
 
         course = Courses.objects.get(uuid=course_id)
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        # if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if not course:
+            print("mãe do céu...")
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
         serialized = CourseSerializer(course)
@@ -60,7 +62,8 @@ class CourseByIdView(APIView):
 
     def patch(self, request, course_id=''):  # Somente Instrutor
         course = Courses.objects.get(uuid=course_id)
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        # if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if not course:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
         # print(course)
 
@@ -91,7 +94,8 @@ class CourseByIdView(APIView):
     def delete(self, request, course_id=''):
         course = Courses.objects.get(uuid=course_id)
 
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        # if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if not course:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
         Courses.delete(course)
@@ -107,10 +111,11 @@ class RegisterInstructorToCourseView(APIView):
     def put(self, request, course_id=''):
         course = Courses.objects.get(uuid=course_id)
 
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        # if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if not course:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
-        candidate_uuid = request.data.instructor_id
+        candidate_uuid = request.data['instructor_id']
         doesInstructorExist = PersonalizedUser.objects.get(uuid=candidate_uuid)
         if doesInstructorExist.is_admin is not True:
             return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
@@ -130,19 +135,22 @@ class EnrollStudentToCourseView(APIView):
     def put(self, request, course_id=''):
         course = Courses.objects.get(uuid=course_id)
 
-        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        # if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+        if not course:
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
-        students_to_enroll = request.data
+        students_to_enroll = request.data['students_id']
 
         for student in students_to_enroll:
             doesUserExist = PersonalizedUser.objects.get(uuid=student)
-            if PersonalizedUser.DoesNotExist:
+            # if PersonalizedUser.DoesNotExist:
+            if not doesUserExist:
+                print('eu, ein..!')
                 return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
-            elif student.is_admin is True:
+            elif doesUserExist.is_admin is True:
                 return Response({"message": "Some student id belongs to an Instructor"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        course.students = students_to_enroll
+        course.students.set(students_to_enroll)
         course.save()
 
         serialized = CourseSerializer(course)
