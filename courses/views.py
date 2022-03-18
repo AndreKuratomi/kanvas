@@ -99,9 +99,12 @@ class CourseByIdView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class RegisterInstructorTorInstructorToCourseView(APIView):
+class RegisterInstructorToCourseView(APIView):
 
-    def put(self, request, course_id):  # Somente Instrutor
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdmin]
+
+    def put(self, request, course_id=''):
         course = Courses.objects.get(uuid=course_id)
 
         if Courses.DoesNotExist:  # MUDAR ESTA LINHA
@@ -119,6 +122,28 @@ class RegisterInstructorTorInstructorToCourseView(APIView):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 
-# class RegisterStudentToCourseView(APIView):
+class EnrollStudentToCourseView(APIView):
 
-    # def put(self, request): # Somente Instrutor
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdmin]
+
+    def put(self, request, course_id=''):
+        course = Courses.objects.get(uuid=course_id)
+
+        if Courses.DoesNotExist:  # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+
+        students_to_enroll = request.data
+
+        for student in students_to_enroll:
+            doesUserExist = PersonalizedUser.objects.get(uuid=student)
+            if PersonalizedUser.DoesNotExist:
+                return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
+            elif student.is_admin is True:
+                return Response({"message": "Some student id belongs to an Instructor"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        course.students = students_to_enroll
+        course.save()
+
+        serialized = CourseSerializer(course)
+        return Response(serialized.data, status=status.HTTP_200_OK)
