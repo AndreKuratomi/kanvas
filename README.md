@@ -9,13 +9,37 @@
 
 # Sobre
 
-<p>A aplicação Kanvas se propõe a 
-O objetivo da aplicação é ser uma ferramenta que possibilite o profissional de saúde cadastrar sua especialidade e seus locais de atendimento e possibilitar ao paciente  fazer uma busca pelo profissional mais adequado para sua necessidade e  agendar a consulta de forma confortável , prática e rápida.</p>
+<p><b>TypeORM_CRUD-de-usuario-JWT</b> é uma aplicação de gerenciamento de usuários com endpoints de pedem autenticação com token. Esta aplicação utiliza o ambiente de execução Node.js e o framework Express.js, além do ORM TypeORM e a plataforma Docker.</p>
 <br>
 
 # Instalação
 
-Após feito o clone do repositório Kenziedoc , instalar :
+<h5>0. Primeiramente, é necessário já ter instalado na própria máquina:</h5>
+
+- <p> Um <b>editor de código</b>, conhecido também como <b>IDE</b>. Por exemplo, o <b>[Visual Studio Code (VSCode)](https://code.visualstudio.com/)</b>.</p>
+
+- <p> Uma <b>ferramenta cliente de API REST</b>. Por exemplo, o <b>[Insomnia](https://insomnia.rest/download)</b> ou o <b>[Postman](https://www.postman.com/product/rest-client/)</b>.</p>
+
+- <p> E versionar o diretório para receber o clone da aplicação:</p>
+
+```
+git init
+```
+
+<br>
+<h5>1. Fazer o clone do reposítório <span style="text-decoration: underline">Users service</span> na sua máquina pelo terminal do computador ou pelo do IDE:</h5>
+
+```
+git clone git@gitlab.com:ABKURA/kanvas.git
+```
+
+<p>Entrar na pasta criada:</p>
+
+```
+cd kanvas
+```
+
+Após feito o clone do repositório Kanvas, instalar:
 
 1. O ambiente virtual e atualizar suas dependências com o seguinte comando:
 
@@ -23,16 +47,22 @@ Após feito o clone do repositório Kenziedoc , instalar :
 python -m venv venv --upgrade-deps
 ```
 
-ative o seu ambiente virtual com o comando:
+2. Ative o seu ambiente virtual com o comando:
 
 ```
 source/venv/bin/activate
 ```
 
-2. recursivamente as dependências do projeto com o comando :
+3. E instalar suas dependências:
 
 ```
 pip install -r requirements.txt
+```
+
+3. E rodar a aplicação:
+
+```
+code .
 ```
 
 # Documentação
