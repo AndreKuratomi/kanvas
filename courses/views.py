@@ -70,7 +70,7 @@ class CourseByIdView(APIView):
         #     for sub_elems in valid_keys:
         #         if elems != sub_elems:
 
-        to_update_data = request.data
+        # to_update_data = request.data
         serializer = CourseSerializer(data=request.data)
         # print(serializer.get_fields())
         if not serializer.is_valid():
@@ -86,6 +86,16 @@ class CourseByIdView(APIView):
         serialized = CourseSerializer(to_update)
 
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, course_id=''): # Somente Instrutor
+        course = Courses.objects.get(uuid=course_id)
+
+        if not course:  # MUDAR ESTA LINHA
+            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+
+        Courses.delete(course)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 # class ManipulateCourseView(APIView):
