@@ -56,7 +56,6 @@ class CourseByIdView(APIView):
 
             return Response(serialized.data, status=status.HTTP_200_OK)
         else:
-            print("mãe do céu...")
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
     def patch(self, request, course_id=''):  # Somente Instrutor
@@ -86,11 +85,8 @@ class CourseByIdView(APIView):
             serialized = CourseSerializer(to_update)
 
             return Response(serialized.data, status=status.HTTP_200_OK)
-            serialized = CourseSerializer(course)
 
-            return Response(serialized.data, status=status.HTTP_200_OK)
         else:
-            print("mãe do céu...")
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, course_id=''):
@@ -101,7 +97,6 @@ class CourseByIdView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
 
         else:
-            print("mãe do céu...")
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
 
@@ -124,11 +119,8 @@ class RegisterInstructorToCourseView(APIView):
 
             serialized = CourseSerializer(course)
             return Response(serialized.data, status=status.HTTP_200_OK)
-            # serialized = CourseSerializer(course)
 
-            # return Response(serialized.data, status=status.HTTP_200_OK)
         else:
-            print("mãe do céu...")
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
 
@@ -145,7 +137,7 @@ class EnrollStudentToCourseView(APIView):
 
             for student in students_to_enroll:
                 doesUserExist = PersonalizedUser.objects.get(uuid=student)
-                # if PersonalizedUser.DoesNotExist:
+
                 if not doesUserExist:
                     print('eu, ein..!')
                     return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
@@ -157,9 +149,6 @@ class EnrollStudentToCourseView(APIView):
 
             serialized = CourseSerializer(course)
             return Response(serialized.data, status=status.HTTP_200_OK)
-            # serialized = CourseSerializer(course)
 
-            # return Response(serialized.data, status=status.HTTP_200_OK)
         else:
-            print("mãe do céu...")
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
