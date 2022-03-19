@@ -1,0 +1,425 @@
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 45 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, rest_framework, staticfiles
+  Apply all migrations: accounts, addresses, admin, auth, authtoken, contenttypes, courses, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying addresses.0001_initial... OK
+  Applying accounts.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying authtoken.0001_initial... OK
+  Applying authtoken.0002_auto_20160226_1747... OK
+  Applying authtoken.0003_tokenproxy... OK
+  Applying courses.0001_initial... OK
+  Applying courses.0002_alter_courses_created_at... OK
+  Applying courses.0003_alter_courses_created_at... OK
+  Applying courses.0004_rename_uuid_courses_id... OK
+  Applying courses.0005_rename_id_courses_uuid... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_duplicate_email_user_creation_422 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_instructor_user_creation_201 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_list_users_by_instructor_200 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_list_users_by_student_403 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_list_users_with_no_token_401 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_login_success_200 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_login_with_invalid_credentials_401 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_login_with_wrong_fields_400 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_student_user_creation_201 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_wrong_data_user_creation_400 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_address_creation_200 (test_api.TestAddress) ... FAIL
+test_address_creation_already_exists_200 (test_api.TestAddress) ... FAIL
+test_address_creation_wrong_data_400 (test_api.TestAddress) ... ok
+test_delete_course_by_instructor_204 (test_api.TestCourseDelete) ... ok
+test_delete_course_by_no_user_401 (test_api.TestCourseDelete) ... ok
+Courses object (0acfa1f5-8265-4103-a646-1199ece23ec1)
+test_delete_course_by_student_403 (test_api.TestCourseDelete) ... ok
+Courses object (b4040bfb-e60e-45fa-8c88-0ff730b83fb3)
+test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete) ... FAIL
+test_course_creation_by_instructor_201 (test_api.TestCoursesCreation) ... ok
+test_course_creation_by_no_user_401 (test_api.TestCoursesCreation) ... ok
+test_course_creation_by_student_403 (test_api.TestCoursesCreation) ... ok
+test_course_creation_duplicate_name_422 (test_api.TestCoursesCreation) ... FAIL
+test_course_creation_wrong_data_400 (test_api.TestCoursesCreation) ... ERROR
+test_list_courses_200 (test_api.TestCoursesCreation) ... ok
+test_retrieve_invalid_course_404 (test_api.TestCoursesCreation) ... FAIL
+test_retrieve_valid_course_200 (test_api.TestCoursesCreation) ... ok
+Courses object (210c22f4-9d0a-4032-b2bb-cddcae846a20)
+test_register_instructor_course_by_instructor_200 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_by_student_403 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ERROR
+test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister) ... ERROR
+test_update_course_by_instructor_200 (test_api.TestCoursesUpdate) ... ERROR
+test_update_course_by_no_user_401 (test_api.TestCoursesUpdate) ... ok
+Courses object (433ac268-ca30-4fe2-808f-d0e3279258df)
+test_update_course_by_student_403 (test_api.TestCoursesUpdate) ... ok
+Courses object (6e53b4db-38dd-4eb2-a28d-6a1697f8e755)
+test_update_course_with_conflict_422 (test_api.TestCoursesUpdate) ... FAIL
+test_update_invalid_course_404 (test_api.TestCoursesUpdate) ... FAIL
+
+======================================================================
+ERROR: test_course_creation_wrong_data_400 (test_api.TestCoursesCreation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 316, in test_course_creation_wrong_data_400
+    response = self.client.post("/api/courses/", self.course_data_wrong, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 296, in post
+    response = super().post(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 210, in post
+    return self.generic('POST', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 28, in post
+    find_course = Courses.objects.filter(name=serializer.validated_data['name']).exists()
+KeyError: 'name'
+
+======================================================================
+ERROR: test_register_instructor_course_by_instructor_200 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 630, in test_register_instructor_course_by_instructor_200
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 707, in test_register_instructor_course_by_no_user_401
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 687, in test_register_instructor_course_by_student_403
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 776, in test_register_instructor_course_with_invalid_id_404
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 751, in test_register_instructor_course_with_student_id_422
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_instructor_course_with_wrong_field_400 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 801, in test_register_instructor_course_with_wrong_field_400
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 731, in test_register_instructor_course_wrong_courseId_404
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 829, in test_register_students_course_by_intructor_200
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 894, in test_register_students_course_by_no_user_401
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_by_student_403 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 872, in test_register_students_course_by_student_403
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 919, in test_register_students_course_invalid_course_id_404
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 969, in test_register_students_course_with_instructor_id_422
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 944, in test_register_students_course_with_invalid_student_id_404
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 994, in test_register_students_course_with_wrong_field_400
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1019, in test_register_students_course_with_wrong_field_type_400
+    output = response.json()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
+    raise ValueError(
+ValueError: Content-Type header is "text/html", not "application/json"
+
+======================================================================
+ERROR: test_update_course_by_instructor_200 (test_api.TestCoursesUpdate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/options.py", line 672, in get_field
+    return self.fields_map[field_name]
+KeyError: 'keys'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 445, in test_update_course_by_instructor_200
+    response = self.client.patch(f"/api/courses/{uuid}/", self.course_data_update, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 312, in patch
+    response = super().patch(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 218, in patch
+    return self.generic('PATCH', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 87, in patch
+    Courses.objects.update(keys=serializer.validated_data[keys])
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 861, in update
+    query.add_update_values(kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/subqueries.py", line 88, in add_update_values
+    field = self.get_meta().get_field(name)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/options.py", line 674, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: Courses has no field named 'keys'
+
+======================================================================
+FAIL: test_address_creation_200 (test_api.TestAddress)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1225, in test_address_creation_200
+    self.assertEqual(response.status_code, 200)
+AssertionError: 201 != 200
+
+======================================================================
+FAIL: test_address_creation_already_exists_200 (test_api.TestAddress)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1248, in test_address_creation_already_exists_200
+    self.assertEqual(response.status_code, 200)
+AssertionError: 201 != 200
+
+======================================================================
+FAIL: test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1141, in test_delete_course_with_invalid_course_id_404
+    self.assertEqual(output, {'message': 'Course does not exist'})
+AssertionError: {'message': 'This course does not exist!'} != {'message': 'Course does not exist'}
+- {'message': 'This course does not exist!'}
+?              ^^^^^^                    -
+
++ {'message': 'Course does not exist'}
+?              ^
+
+
+======================================================================
+FAIL: test_course_creation_duplicate_name_422 (test_api.TestCoursesCreation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 303, in test_course_creation_duplicate_name_422
+    self.assertEqual(output, {'message': 'Course already exists'})
+AssertionError: {'message': 'Course already created!'} != {'message': 'Course already exists'}
+- {'message': 'Course already created!'}
+?                             -- ^ ^^^
+
++ {'message': 'Course already exists'}
+?                              ^^^ ^
+
+
+======================================================================
+FAIL: test_retrieve_invalid_course_404 (test_api.TestCoursesCreation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 376, in test_retrieve_invalid_course_404
+    self.assertEqual(output, {'message': 'Course does not exist'})
+AssertionError: {'message': 'This course does not exist!'} != {'message': 'Course does not exist'}
+- {'message': 'This course does not exist!'}
+?              ^^^^^^                    -
+
++ {'message': 'Course does not exist'}
+?              ^
+
+
+======================================================================
+FAIL: test_update_course_with_conflict_422 (test_api.TestCoursesUpdate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 525, in test_update_course_with_conflict_422
+    self.assertEqual(output, {'message': 'This course name already exists'})
+AssertionError: {'message': 'There is already a course with this name!'} != {'message': 'This course name already exists'}
+- {'message': 'There is already a course with this name!'}
++ {'message': 'This course name already exists'}
+
+======================================================================
+FAIL: test_update_invalid_course_404 (test_api.TestCoursesUpdate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 500, in test_update_invalid_course_404
+    self.assertEqual(output, {'message': 'Course does not exist'})
+AssertionError: {'message': 'This course does not exist!'} != {'message': 'Course does not exist'}
+- {'message': 'This course does not exist!'}
+?              ^^^^^^                    -
+
++ {'message': 'Course does not exist'}
+?              ^
+
+
+----------------------------------------------------------------------
+Ran 45 tests in 49.492s
+
+FAILED (failures=7, errors=17)
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
