@@ -69,13 +69,12 @@ class CourseByIdView(APIView):
         try:
             if is_valid_UUID(course_id):
                 course = Courses.objects.get(uuid=course_id)
+                # COMO DEIXAR OS CAMPOS DE REQUEST.FIELDS OPCIONAIS COM O SERIALIZER NA HISTÓRIA????
 
                 serializer = CourseSerializer(course, data=request.data)
 
                 if serializer.is_valid():
-                    # COMO DEIXAR OS CAMPOS DE REQUEST.FIELDS OPCIONAIS????
                     # DE QUE ADIANTA VALIDAR SE NO SERIALIZER OS CAMPOS SÃO FIXOS?
-                    print("upa!")
                     data = request.data.keys()
 
                     for keys in data:
@@ -85,12 +84,13 @@ class CourseByIdView(APIView):
                                     doesUpdatedNameAlreadyExists = Courses.objects.filter(name=serializer.validated_data['name']).exists()
                                     if doesUpdatedNameAlreadyExists:
                                         return Response({"message": "There is already a course with this name!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+                                    Courses.objects.update(keys=serializer.validated_data[keys])
+                            Courses.objects.update(keys=serializer.validated_data[keys])
 
                                 # Courses.objects.update(keys=serializer.validated_data[keys])
                         # serializer.save()
                     return Response(serializer.validated_data, status=status.HTTP_200_OK)
                 else:
-                    print("eita!")
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
                     # if 'name' in keys:
