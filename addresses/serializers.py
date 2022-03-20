@@ -4,7 +4,7 @@ from accounts.serializers import PersonalizedUserSerializer
 
 
 class AddressSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
+    uuid = serializers.UUIDField(read_only=True)
 
     city = serializers.CharField()
     country = serializers.CharField()
