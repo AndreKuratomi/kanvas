@@ -19,21 +19,23 @@ class CoursesView(APIView):
     permission_classes = [IsAdmin]
 
     def post(self, request):
+        try:
+            serializer = CourseSerializer(data=request.data)
 
-        serializer = CourseSerializer(data=request.data)
+            if serializer.is_valid():
+                Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        if serializer.is_valid():
-            Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            find_course = Courses.objects.filter(name=serializer.validated_data['name']).exists()
+            if find_course is True:
+                return Response({'message': 'Course already exists'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        find_course = Courses.objects.filter(name=serializer.validated_data['name']).exists()
-        if find_course is True:
-            return Response({'message': 'Course already created!'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            course = Courses.objects.create(**serializer.validated_data)
 
-        course = Courses.objects.create(**serializer.validated_data)
+            serialized = CourseSerializer(course)
 
-        serialized = CourseSerializer(course)
-
-        return Response(serialized.data, status=status.HTTP_201_CREATED)
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
 
@@ -57,10 +59,10 @@ class CourseByIdView(APIView):
 
                 return Response(serialized.data, status=status.HTTP_200_OK)
 
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         except Courses.DoesNotExist:
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
     def patch(self, request, course_id=''):
 
@@ -114,7 +116,7 @@ class CourseByIdView(APIView):
             return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
         except Courses.DoesNotExist:
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class RegisterInstructorToCourseView(APIView):
@@ -129,6 +131,7 @@ class RegisterInstructorToCourseView(APIView):
 
                 candidate_uuid = request.data['instructor_id']
                 doesInstructorExist = PersonalizedUser.objects.get(uuid=candidate_uuid)
+
                 if doesInstructorExist.is_admin is not True:
                     return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
