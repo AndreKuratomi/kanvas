@@ -30,10 +30,6 @@ Running migrations:
   Applying authtoken.0002_auto_20160226_1747... OK
   Applying authtoken.0003_tokenproxy... OK
   Applying courses.0001_initial... OK
-  Applying courses.0002_alter_courses_created_at... OK
-  Applying courses.0003_alter_courses_created_at... OK
-  Applying courses.0004_rename_uuid_courses_id... OK
-  Applying courses.0005_rename_id_courses_uuid... OK
   Applying sessions.0001_initial... OK
 System check identified no issues (0 silenced).
 test_duplicate_email_user_creation_422 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
@@ -46,14 +42,14 @@ test_login_with_invalid_credentials_401 (test_api.TestAccountsRoutesWithoutAuthe
 test_login_with_wrong_fields_400 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
 test_student_user_creation_201 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
 test_wrong_data_user_creation_400 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
-test_address_creation_200 (test_api.TestAddress) ... FAIL
-test_address_creation_already_exists_200 (test_api.TestAddress) ... FAIL
+test_address_creation_200 (test_api.TestAddress) ... ok
+test_address_creation_already_exists_200 (test_api.TestAddress) ... ok
 test_address_creation_wrong_data_400 (test_api.TestAddress) ... ok
 test_delete_course_by_instructor_204 (test_api.TestCourseDelete) ... ok
 test_delete_course_by_no_user_401 (test_api.TestCourseDelete) ... ok
-Courses object (0acfa1f5-8265-4103-a646-1199ece23ec1)
+Courses object (d7eb395e-ee78-44d0-999b-00235c53a5f8)
 test_delete_course_by_student_403 (test_api.TestCourseDelete) ... ok
-Courses object (b4040bfb-e60e-45fa-8c88-0ff730b83fb3)
+Courses object (f36c9f3f-e401-478f-bdf5-9c92e6a52c77)
 test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete) ... FAIL
 test_course_creation_by_instructor_201 (test_api.TestCoursesCreation) ... ok
 test_course_creation_by_no_user_401 (test_api.TestCoursesCreation) ... ok
@@ -63,27 +59,36 @@ test_course_creation_wrong_data_400 (test_api.TestCoursesCreation) ... ERROR
 test_list_courses_200 (test_api.TestCoursesCreation) ... ok
 test_retrieve_invalid_course_404 (test_api.TestCoursesCreation) ... FAIL
 test_retrieve_valid_course_200 (test_api.TestCoursesCreation) ... ok
-Courses object (210c22f4-9d0a-4032-b2bb-cddcae846a20)
+Courses object (b6a16f39-e572-4eac-b4fb-8364630cf9ff)
 test_register_instructor_course_by_instructor_200 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister) ... ERROR
+Courses object (45ba2572-d76f-499f-ba0d-8b941e9bee2d)
+test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister) ... ok
+Courses object (38b8ca83-76dd-4aab-88a1-4ac88360bb0b)
+test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister) ... ok
+Courses object (300fcbea-46ac-4773-bcd7-efcf5dcc8cf0)
 test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister) ... ok
+Courses object (8bd74ccf-a903-42e9-8085-252cb5892ef7)
 test_register_instructor_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_by_student_403 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister) ... FAIL
+test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister) ... ok
+Courses object (c069f8f7-f3dc-4257-b25e-c16d094c75cd)
+Courses object (241ed544-3193-4c65-80d3-d32a2d9aace8)
+test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister) ... ok
+Courses object (47ba62b3-5d44-446c-86f7-d83e15d9ed42)
+test_register_students_course_by_student_403 (test_api.TestCoursesRegister) ... ok
+Courses object (f8886e55-e4c5-4c6f-b7f5-0ab6f7d0fbd5)
+test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister) ... FAIL
+test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister) ... ok
+Courses object (b72ce850-b0c0-4bfe-861d-930dcf7e0823)
 test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister) ... ERROR
 test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ERROR
 test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister) ... ERROR
 test_update_course_by_instructor_200 (test_api.TestCoursesUpdate) ... ERROR
 test_update_course_by_no_user_401 (test_api.TestCoursesUpdate) ... ok
-Courses object (433ac268-ca30-4fe2-808f-d0e3279258df)
+Courses object (3140bfb2-a6e3-49b1-871a-50c3270dcfa4)
 test_update_course_by_student_403 (test_api.TestCoursesUpdate) ... ok
-Courses object (6e53b4db-38dd-4eb2-a28d-6a1697f8e755)
+Courses object (78bd4346-9d4b-40fe-aa68-6c8cf46a212f)
 test_update_course_with_conflict_422 (test_api.TestCoursesUpdate) ... FAIL
 test_update_invalid_course_404 (test_api.TestCoursesUpdate) ... FAIL
 
@@ -133,151 +138,331 @@ KeyError: 'name'
 ERROR: test_register_instructor_course_by_instructor_200 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 630, in test_register_instructor_course_by_instructor_200
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 477, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: courses_courses.instructor_id
 
-======================================================================
-ERROR: test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 707, in test_register_instructor_course_by_no_user_401
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+The above exception was the direct cause of the following exception:
 
-======================================================================
-ERROR: test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 687, in test_register_instructor_course_by_student_403
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 646, in test_register_instructor_course_by_instructor_200
+    response = self.client.put(f"/api/courses/{course_id_2}/registrations/instructor/", body, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 136, in put
+    course.save()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 806, in save
+    self.save_base(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 857, in save_base
+    updated = self._save_table(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 970, in _save_table
+    updated = self._do_update(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1034, in _do_update
+    return filtered._update(values) > 0
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 885, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1783, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 477, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: courses_courses.instructor_id
 
 ======================================================================
 ERROR: test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 776, in test_register_instructor_course_with_invalid_id_404
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 751, in test_register_instructor_course_with_student_id_422
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 775, in test_register_instructor_course_with_invalid_id_404
+    response = self.client.put(f"/api/courses/{course_id}/registrations/instructor/", body, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 131, in put
+    doesInstructorExist = PersonalizedUser.objects.get(uuid=candidate_uuid)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+accounts.models.PersonalizedUser.DoesNotExist: PersonalizedUser matching query does not exist.
 
 ======================================================================
 ERROR: test_register_instructor_course_with_wrong_field_400 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 801, in test_register_instructor_course_with_wrong_field_400
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 731, in test_register_instructor_course_wrong_courseId_404
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 829, in test_register_students_course_by_intructor_200
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 894, in test_register_students_course_by_no_user_401
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_by_student_403 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 872, in test_register_students_course_by_student_403
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 919, in test_register_students_course_invalid_course_id_404
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 969, in test_register_students_course_with_instructor_id_422
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 800, in test_register_instructor_course_with_wrong_field_400
+    response = self.client.put(f"/api/courses/{course_id}/registrations/instructor/", body, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 130, in put
+    candidate_uuid = request.data['instructor_id']
+KeyError: 'instructor_id'
 
 ======================================================================
 ERROR: test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 944, in test_register_students_course_with_invalid_student_id_404
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 943, in test_register_students_course_with_invalid_student_id_404
+    response = self.client.put(f"/api/courses/{course_id}/registrations/students/", body, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 160, in put
+    doesUserExist = PersonalizedUser.objects.get(uuid=student)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 496, in get
+    raise self.model.DoesNotExist(
+accounts.models.PersonalizedUser.DoesNotExist: PersonalizedUser matching query does not exist.
 
 ======================================================================
 ERROR: test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 994, in test_register_students_course_with_wrong_field_400
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 993, in test_register_students_course_with_wrong_field_400
+    response = self.client.put(f"/api/courses/{course_id}/registrations/students/", body, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 157, in put
+    students_to_enroll = request.data['students_id']
+KeyError: 'students_id'
 
 ======================================================================
 ERROR: test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1019, in test_register_students_course_with_wrong_field_type_400
-    output = response.json()
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2614, in to_python
+    return uuid.UUID(**{input_form: value})
+  File "/home/abkura/.asdf/installs/python/3.9.6/lib/python3.9/uuid.py", line 177, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1018, in test_register_students_course_with_wrong_field_type_400
+    response = self.client.put(f"/api/courses/{course_id}/registrations/students/", body, format="json")
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/courses/views.py", line 160, in put
+    doesUserExist = PersonalizedUser.objects.get(uuid=student)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 482, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1071, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1089, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1096, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1466, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1496, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1412, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1242, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2598, in get_prep_value
+    return self.to_python(value)
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2616, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“7” is not a valid UUID.']
 
 ======================================================================
 ERROR: test_update_course_by_instructor_200 (test_api.TestCoursesUpdate)
@@ -337,22 +522,6 @@ Traceback (most recent call last):
 django.core.exceptions.FieldDoesNotExist: Courses has no field named 'keys'
 
 ======================================================================
-FAIL: test_address_creation_200 (test_api.TestAddress)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1225, in test_address_creation_200
-    self.assertEqual(response.status_code, 200)
-AssertionError: 201 != 200
-
-======================================================================
-FAIL: test_address_creation_already_exists_200 (test_api.TestAddress)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 1248, in test_address_creation_already_exists_200
-    self.assertEqual(response.status_code, 200)
-AssertionError: 201 != 200
-
-======================================================================
 FAIL: test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
@@ -395,6 +564,34 @@ AssertionError: {'message': 'This course does not exist!'} != {'message': 'Cours
 
 
 ======================================================================
+FAIL: test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 734, in test_register_instructor_course_wrong_courseId_404
+    self.assertEqual(output, {'message': 'Course does not exist'})
+AssertionError: {'message': 'This course does not exist!'} != {'message': 'Course does not exist'}
+- {'message': 'This course does not exist!'}
+?              ^^^^^^                    -
+
++ {'message': 'Course does not exist'}
+?              ^
+
+
+======================================================================
+FAIL: test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/abkura/Desktop/Area_de_trabalho/Kenzie-academy/Mar2021/Q4/Sprint4/Entrega10_Kanvas/test_api.py", line 922, in test_register_students_course_invalid_course_id_404
+    self.assertEqual(output, {'message': 'Course does not exist'})
+AssertionError: {'message': 'This course does not exist!'} != {'message': 'Course does not exist'}
+- {'message': 'This course does not exist!'}
+?              ^^^^^^                    -
+
++ {'message': 'Course does not exist'}
+?              ^
+
+
+======================================================================
 FAIL: test_update_course_with_conflict_422 (test_api.TestCoursesUpdate)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
@@ -419,7 +616,7 @@ AssertionError: {'message': 'This course does not exist!'} != {'message': 'Cours
 
 
 ----------------------------------------------------------------------
-Ran 45 tests in 49.492s
+Ran 45 tests in 46.951s
 
-FAILED (failures=7, errors=17)
+FAILED (failures=7, errors=8)
 Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
