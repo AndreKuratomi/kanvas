@@ -29,4 +29,4 @@ class AddressView(APIView):
         user.save()
 
         serialized = AddressSerializer(address)
-        return Response(serialized.data, status=status.HTTP_201_CREATED)
+        return Response(serialized.data, status=status.HTTP_200_OK)
