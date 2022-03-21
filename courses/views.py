@@ -56,7 +56,7 @@ class CourseByIdView(APIView):
         try:
             if is_valid_UUID(course_id):
                 course = Courses.objects.get(uuid=course_id)
-                print(course)
+
                 serialized = CourseSerializer(course)
 
                 return Response(serialized.data, status=status.HTTP_200_OK)
@@ -82,14 +82,14 @@ class CourseByIdView(APIView):
 
         try:
             course = Courses.objects.filter(uuid=course_id).update(**serializer.validated_data)
-            print(course)
+
         except IntegrityError:
             return Response({"message": "This course name already exists"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
         updated = Courses.objects.get(uuid=course_id)
 
         serialized = CourseSerializer(updated)
-        print(serialized.data)
+
 
         return Response(serialized.data, status=status.HTTP_200_OK)
 
