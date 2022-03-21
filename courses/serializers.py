@@ -13,3 +13,9 @@ class CourseSerializer(serializers.Serializer):
 
     instructor = PersonalizedUserSerializer(read_only=True)
     students = PersonalizedUserSerializer(many=True, read_only=True)
+
+
+class CourseToUpdateSerializer(serializers.Serializer):
+    name = serializers.CharField(required=False)
+    demo_time = serializers.TimeField(required=False)
+    link_repo = serializers.CharField(required=False)
