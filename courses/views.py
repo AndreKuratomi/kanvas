@@ -1,10 +1,11 @@
+from django.db import IntegrityError
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accounts.models import PersonalizedUser
-from courses.serializers import CourseSerializer
+from courses.serializers import CourseSerializer, CourseToUpdateSerializer
 
 from .models import Courses
 from .permissions import IsAdmin
@@ -34,6 +35,7 @@ class CoursesView(APIView):
             serialized = CourseSerializer(course)
 
             return Response(serialized.data, status=status.HTTP_201_CREATED)
+
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -66,44 +68,30 @@ class CourseByIdView(APIView):
 
     def patch(self, request, course_id=''):
 
-        valid_fields = ['name', 'demo_time', 'link_repo']
+        serializer = CourseToUpdateSerializer(data=request.data)
+        valid = serializer.is_valid()
 
         try:
-            if is_valid_UUID(course_id):
-                course = Courses.objects.get(uuid=course_id)
-                # COMO DEIXAR OS CAMPOS DE REQUEST.FIELDS OPCIONAIS COM O SERIALIZER NA HISTÓRIA????
-
-                serializer = CourseSerializer(course, data=request.data)
-
-                if serializer.is_valid():
-                    # DE QUE ADIANTA VALIDAR SE NO SERIALIZER OS CAMPOS SÃO FIXOS?
-                    data = request.data.keys()
-
-                    for keys in data:
-                        for elems in valid_fields:
-                            if keys == elems:
-                                if keys == 'name':
-                                    doesUpdatedNameAlreadyExists = Courses.objects.filter(name=serializer.validated_data['name']).exists()
-                                    if doesUpdatedNameAlreadyExists:
-                                        return Response({"message": "There is already a course with this name!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-                                    Courses.objects.update(keys=serializer.validated_data[keys])
-                            Courses.objects.update(keys=serializer.validated_data[keys])
-
-                                # Courses.objects.update(keys=serializer.validated_data[keys])
-                        # serializer.save()
-                    return Response(serializer.validated_data, status=status.HTTP_200_OK)
-                else:
-                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-                    # if 'name' in keys:
-
-                    # to_update = Courses.objects.update(**serializer.validated_data)
-                    # serialized = CourseSerializer(to_update)
-
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
-
+            valid_uuid = is_valid_UUID(course_id)
+            if valid_uuid:
+                doesCourseExist = Courses.objects.get(uuid=course_id)
         except Courses.DoesNotExist:
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        except ValueError:
+            return Response({"message": "No valid UUID"}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            course = Courses.objects.filter(uuid=course_id).update(**serializer.validated_data)
+            print(course)
+        except IntegrityError:
+            return Response({"message": "This course name already exists"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        updated = Courses.objects.get(uuid=course_id)
+
+        serialized = CourseSerializer(updated)
+        print(serialized.data)
+
+        return Response(serialized.data, status=status.HTTP_200_OK)
 
     def delete(self, request, course_id=''):
         try:
@@ -113,7 +101,7 @@ class CourseByIdView(APIView):
 
                 return Response(status=status.HTTP_204_NO_CONTENT)
 
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         except Courses.DoesNotExist:
             return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
@@ -139,12 +127,13 @@ class RegisterInstructorToCourseView(APIView):
                 course.save()
 
                 serialized = CourseSerializer(course)
+
                 return Response(serialized.data, status=status.HTTP_200_OK)
 
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         except Courses.DoesNotExist:
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class EnrollStudentToCourseView(APIView):
@@ -160,11 +149,12 @@ class EnrollStudentToCourseView(APIView):
                 students_to_enroll = request.data['students_id']
 
                 for student in students_to_enroll:
-                    doesUserExist = PersonalizedUser.objects.get(uuid=student)
+                    try:
+                        doesUserExist = PersonalizedUser.objects.get(uuid=student)
+                    except:
+                        return Response({"message": "Invalid students_id list"}, status=status.HTTP_400_BAD_REQUEST)
 
-                    if not doesUserExist:
-                        return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
-                    elif doesUserExist.is_admin is True:
+                    if doesUserExist.is_admin is True:
                         return Response({"message": "Some student id belongs to an Instructor"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
                 course.students.set(students_to_enroll)
@@ -173,7 +163,7 @@ class EnrollStudentToCourseView(APIView):
                 serialized = CourseSerializer(course)
                 return Response(serialized.data, status=status.HTTP_200_OK)
 
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         except Courses.DoesNotExist:
-            return Response({"message": "This course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
