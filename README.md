@@ -69,7 +69,7 @@ code .
 
 Para ter acesso ao descrições detalhes das rotas e seus retornos, conferir documentação completa no link a seguir:
 
-https://manual-api-kenziedoc.vercel.app/
+https://insomnia-abkura.vercel.app/
 
 # Termos de uso
 
