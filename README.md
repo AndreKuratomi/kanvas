@@ -67,7 +67,7 @@ code .
 
 # Documentação
 
-Para ter acesso ao descrições detalhes das rotas e seus retornos, conferir documentação completa no link a seguir:
+Para ter acesso às descrições, detalhes das rotas e seus retornos, conferir documentação completa no link a seguir:
 
 https://kanvas-documentation.vercel.app/
 
