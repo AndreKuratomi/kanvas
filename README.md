@@ -9,7 +9,7 @@
 
 # Sobre
 
-<b>Kanvas</b> é uma aplicação de gerenciamento de usuários e cursos semelhante à plataforma [Canvas(https://www.canvas.net/)]. Esta aplicação utiliza o framework Django.
+<b>Kanvas</b> é uma aplicação de gerenciamento de usuários e cursos semelhante à plataforma [Canvas](https://www.canvas.net/). Esta aplicação utiliza o framework Django.
 <br>
 
 # Instalação
