@@ -9,16 +9,16 @@
 
 # Sobre
 
-<p><b>Kanvas</b> é uma aplicação de gerenciamento de usuários e cursos semelhante à plataforma [Canvas(https://www.canvas.net/)]. Esta aplicação utiliza o framework Django.</p>
+<b>Kanvas</b> é uma aplicação de gerenciamento de usuários e cursos semelhante à plataforma [Canvas(https://www.canvas.net/)]. Esta aplicação utiliza o framework Django.
 <br>
 
 # Instalação
 
 <h5>0. Primeiramente, é necessário já ter instalado na própria máquina:</h5>
 
-- <p> Um <b>editor de código</b>, conhecido também como <b>IDE</b>. Por exemplo, o <b>[Visual Studio Code (VSCode)](https://code.visualstudio.com/)</b>.</p>
+- Um <b>editor de código</b>, conhecido também como <b>IDE</b>. Por exemplo, o <b>[Visual Studio Code (VSCode)](https://code.visualstudio.com/)</b>.
 
-- <p> Uma <b>ferramenta cliente de API REST</b>. Por exemplo, o <b>[Insomnia](https://insomnia.rest/download)</b> ou o <b>[Postman](https://www.postman.com/product/rest-client/)</b>.</p>
+- Uma <b>ferramenta cliente de API REST</b>. Por exemplo, o <b>[Insomnia](https://insomnia.rest/download)</b> ou o <b>[Postman](https://www.postman.com/product/rest-client/)</b>.
 
 - <p> E versionar o diretório para receber o clone da aplicação:</p>
 
