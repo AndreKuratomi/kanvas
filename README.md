@@ -9,7 +9,7 @@
 
 # Sobre
 
-<b>kanvas</b> é uma API de gerenciamento de usuários e cursos semelhante à plataforma [Canvas](https://www.canvas.net/). Esta aplicação utiliza o framework Django.
+<b>kanvas</b> é uma API de gerenciamento de usuários e cursos semelhante à plataforma [Canvas](https://www.canvas.net/). Esta aplicação utiliza o framework <b>Django</b> e o banco de dados <b>SQLite3</b>.
 <br>
 
 # Instalação
